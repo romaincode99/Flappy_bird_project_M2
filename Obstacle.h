@@ -57,6 +57,3 @@ Obstacle::Obstacle(RNG G,int hor, int vert, double ray){
 }
 
 #endif //PROJET_FLAPPY_BIRD_OBSTACLE_H
-
-
-

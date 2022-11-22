@@ -26,8 +26,8 @@ void Environement::change_obstacle_si_necessaire()
 
 void Environement::avance_oiseau()
 {
-  double poid = -bird.get_masse()*G;
-  double Force_ini = 543;
+  double poid = bird.get_masse()*G;
+  // double Force_ini = 543;
   double a = (poid + Force_ini)/bird.get_masse();
   bird.set_vit(bird.get_vit() + dt * a);
   bird.set_pos(bird.get_pos() + dt * bird.get_vit() + dt * dt/2 * a)

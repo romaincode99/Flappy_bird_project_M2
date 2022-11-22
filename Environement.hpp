@@ -23,14 +23,14 @@ class Environement
     int dt = 1./60 ;// 1/fps
 
   public:
-    Environement(RNG G) : aleas(G);
+    // Environement() : aleas(G);
     bool touche_ou_pas();
     void change_obstacle_si_necessaire();
     // ------A FAIRE-------
     void avance_oiseau();
     void avance_tuyaux();
     //-----------------
-}
+};
 
 #endif
 
