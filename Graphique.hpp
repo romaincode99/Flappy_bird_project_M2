@@ -1,15 +1,14 @@
 #ifndef GRAPH
 #define GRAPH
 
-#include "Environement.hpp"
+#include "Environnement.hpp"
 
-class Graphique : public Environement
-{
-  private:
+class Graphique : public Environnement {
+private:
     SDL_Event event;
 
-  public:
-    Graphique():
+public:
+    Graphique() :
 };
 
 #endif

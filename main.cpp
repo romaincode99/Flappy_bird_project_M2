@@ -1,13 +1,16 @@
 #include <iostream>
 #include"Obstacle.h"
 #include "Oiseau.h"
-#include "Environement.hpp"
+#include "Environnement.hpp"
+#include <random>
+
 
 using namespace std;
 
-int main()
-{
-  mt19937 G;
-  Environement<mt19937> Justi_Naze;
-  return 0;
+int main() {
+    mt19937 G;
+    Environnement<mt19937> JM(G);
+    JM.touche_ou_pas();
+    cout<<(JM.bird).get_pos()<<endl;
+    return 0;
 }
