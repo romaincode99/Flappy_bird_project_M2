@@ -3,23 +3,23 @@
 // #include "Oiseau.h"
 // #include "Environement.hpp"
 #include "Graphique.hpp"
+#include "Jeu.hpp"
+#include <SDL2/SDL.h>
+#include <random>
+#include <stdio.h>
+#include <ctime>
 
 using namespace std;
 
 int main()
 {
-  Graphique A(300,300);
-  bool run=true;
-  while(run){
-    A.ecouter();
-    if(A.get_quitter()){
-      run=false;
-    }
-    if(A.get_touche_enfoncee()){
-      cout << "A.touche_appuyee" << endl;
-    }
-    SDL_Delay(10);
-  }
+  mt19937 G(time(NULL));
+  Jeu J(G);
+  J.run();
 
   return 0;
 }
+
+//rajouter le faite que si on appui long temsp le soisseua saute plus haut !!
+// faire attention au centre de l'oiseau !
+// faire test unitaires

@@ -10,28 +10,31 @@
 
 class Oiseau {
 private:
-    int pos;
+    double pos;
     int pos_hor = 100;
     double vit;
-    int rayon = 10; //mettre la bonne valeur
+    int rayon; //mettre la bonne valeur
     bool mort_ou_vif = true; //true = vif
     double masse;
 
 public:
-    Oiseau(int p, double v, double mass) : pos(p), vit(v), masse(mass){}
+    Oiseau(int p, double v, double mass, int r) : pos(p), vit(v), masse(mass), rayon(r){}
 
-    bool monte_ou_descend() {
+    bool monte_ou_descend()
+    {
         if (vit > 0)
             return true;
         return false;
     }
 
-    void oiseau_meurt(bool b) {
+    void oiseau_meurt(bool b)
+    {
         assert(b == true);
         mort_ou_vif = true;
     }
 
-    double get_pos() {
+    double get_pos()
+    {
         return pos;
     }
 
@@ -39,7 +42,7 @@ public:
         return vit;
     }
 
-    double get_rayon() {
+    int get_rayon() {
         return rayon;
     }
 
@@ -51,7 +54,7 @@ public:
         return masse;
     }
 
-    double get_pos_hor() {
+    int get_pos_hor() {
         return pos_hor;
     }
 
