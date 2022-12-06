@@ -30,7 +30,7 @@ public:
     double Gr;
 
 // public:
-    Environnement(RNG G, double VH = -250., int T_horiz = 800, int T_vert = 1023,  int taille_oiseau = 40,
+    Environnement(RNG& G, double VH = -250., int T_horiz = 800, int T_vert = 1023,  int taille_oiseau = 20,
                   double dt_ = 1e-2, double Gr_ = 9.81 * 0.5e3) :  vitesse_horizontale(VH),
                                                            obstacle_gauche(G, T_horiz / 2, T_vert, taille_oiseau),
                                                            obstacle_droite(G, T_horiz, T_vert, taille_oiseau),
@@ -41,9 +41,9 @@ public:
                                                            Gr(Gr_), aleas(G) {};
 //TODO Pourquoi on se sert de la masse ??
 
-    bool touche_ou_pas(void);
+    bool touche_pas(void);
 
-    void change_obstacle_si_necessaire();
+    bool change_obstacle_si_necessaire();
 
     void tombe_oiseau();
     void saute_oiseau();
@@ -62,37 +62,36 @@ public:
 
 //fonction touche ou touche pas renvoie true quand touche pas et false si on touche
 template<class RNG>
-bool Environnement<RNG>::touche_ou_pas(void) //à la fois obstacle et fenetre
+bool Environnement<RNG>::touche_pas(void)
 {
-    if (bird.get_pos_hor() + bird.get_rayon() < obstacle_droite.get_pos_hor() - obstacle_droite.get_large() ||
-        bird.get_pos_hor() - bird.get_rayon() > obstacle_droite.get_pos_hor() + obstacle_droite.get_large() &&
-        bird.get_pos_hor() + bird.get_rayon() < obstacle_gauche.get_pos_hor() - obstacle_gauche.get_large() ||
-        bird.get_pos_hor() - bird.get_rayon() > obstacle_gauche.get_pos_hor())
+    if ((bird.get_pos_hor() + bird.get_rayon() > obstacle_gauche.get_pos_hor() - obstacle_gauche.get_large() / 2 &&
+        bird.get_pos_hor() - bird.get_rayon() < obstacle_gauche.get_pos_hor() + obstacle_gauche.get_large() / 2) &&
+        (bird.get_pos() - bird.get_rayon() < obstacle_gauche.get_bas() ||
+        bird.get_pos() + bird.get_rayon() > obstacle_gauche.get_haut())
+        )
         return (false);
-    else if ((bird.get_pos() - bird.get_rayon() > obstacle_droite.get_bas() &&
-              bird.get_pos() + bird.get_rayon() < obstacle_droite.get_haut()) ||
-             (bird.get_pos() - bird.get_rayon() > obstacle_droite.get_bas() &&
-              bird.get_pos() + bird.get_rayon() < obstacle_droite.get_haut()))
-        return (false);
-    else if (bird.get_pos() < 0 || bird.get_pos() > taille_fenetre_verticale)
+    else if(bird.get_pos() - bird.get_rayon() < 0 || bird.get_pos() + bird.get_rayon()> taille_fenetre_verticale)
         return (false);
     else
         return (true);
 }
 
 template<class RNG>
-void Environnement<RNG>::change_obstacle_si_necessaire() {
+bool Environnement<RNG>::change_obstacle_si_necessaire()//return true si rajoute un obstacle et false sinon (pour compter les obstacles passés)
+{
     if (obstacle_gauche.get_pos_hor() + obstacle_gauche.get_large() <= 0) // coordonnées de la fenetre (0,0) en bas a gauche !
     {
         obstacle_gauche = obstacle_droite;
         obstacle_droite = Obstacle(aleas, taille_fenetre_horizontale, taille_fenetre_verticale, bird.get_rayon());
+        return true;
     }
+    return false;
 }
 
 template<class RNG>
 void Environnement<RNG>::tombe_oiseau()
 {
-    double a = 60 + Gr;
+    double a = Gr;// + 60;
     bird.set_vit(bird.get_vit() + dt * a);
     bird.set_pos(bird.get_pos() + dt * bird.get_vit() + dt * dt / 2 * a);
     // std::cout <<bird.get_pos() + dt * bird.get_vit() + dt * dt / 2 * a << '\n';
@@ -102,7 +101,7 @@ void Environnement<RNG>::tombe_oiseau()
 template<class RNG>
 void Environnement<RNG>::saute_oiseau()
 {
-  bird.set_vit(0 * bird.get_vit()-1300);
+  bird.set_vit(-1200);
 }
 
 template<class RNG>

@@ -42,28 +42,10 @@ public:
     }
 };
 
-// template<class RNG>
-// Obstacle::Obstacle(RNG& G, int hor, int taille_fenetre_vert, int ray) {
-//     int taille_fenetre = taille_fenetre_vert;
-//     int taille_oiseau = ray;
-//     normal_distribution<double> N1(taille_fenetre / 3. - taille_oiseau, 1);
-//     normal_distribution<double> N2(2 * taille_fenetre / 3. - taille_oiseau, 1);
-//     int h = 1 / 2 * N1(G) + 1 / 2 * N2(G);
-//     h = min(h, 2 * taille_oiseau);
-//     h = max(h, taille_fenetre);
-//     normal_distribution<double> U(2 * taille_oiseau, 1);
-//     int d = max(U(G), 1.5 * taille_oiseau);
-//     d = min(d, h);
-//     haut = h;
-//     bas = haut - d;
-//     pos_hor = hor + largeur / 2;
-//     std::cout << haut << " " << bas << " " << d << '\n';
-// }
-
 template<class RNG>
 Obstacle::Obstacle(RNG& G, int taille_fenetre_hor, int taille_fenetre, int taille_oiseau)
 {
-    int taille_trou = 5 * taille_oiseau;
+    int taille_trou = 11 * taille_oiseau;
     normal_distribution<double> N1(taille_fenetre / 3. - taille_oiseau, 300);
     normal_distribution<double> N2(2 * taille_fenetre / 3. - taille_oiseau, 300);
     bernoulli_distribution Bernou(0.5);
