@@ -69,9 +69,15 @@ bool Environnement<RNG>::touche_pas(void)
         (bird.get_pos() - bird.get_rayon() < obstacle_gauche.get_bas() ||
         bird.get_pos() + bird.get_rayon() > obstacle_gauche.get_haut())
         )
+        {
+        throw logic_error("Tu est Mort ... RIP");
         return (false);
+      }
     else if(bird.get_pos() - bird.get_rayon() < 0 || bird.get_pos() + bird.get_rayon()> taille_fenetre_verticale)
+    {
+        throw logic_error("Tu est Mort ... RIP");
         return (false);
+      }
     else
         return (true);
 }

@@ -74,22 +74,30 @@ class Graphique
     void affiche_obstacle(Environnement<RNG> Env);
 
     template<class RNG>
-    void affiche_tout(Environnement<RNG> Justi)
+    void affiche_pause(Environnement<RNG>)const;
+
+    template<class RNG>
+    void affiche_tout(Environnement<RNG> Justi, bool pause) // bah c'est justine l'environnement !
     {
       affiche_fond();
       affiche_oiseau(Justi.get_oiseau());
       affiche_obstacle<RNG>(Justi);
+      if(pause)
+        affiche_pause<RNG>(Justi);
+
       SDL_RenderPresent(renderer);
     }
 };
 
+
 //===============================================================================================================================//
+
 
 Graphique::Graphique(int largeur, int hauteur):quitter(false), touche_appuyee(0), reset(false), echap(false)
 {
   if( SDL_Init(SDL_INIT_VIDEO) < 0 )
   {
-      throw runtime_error("Impossible d'initialiser la SDL");
+    throw runtime_error("Impossible d'initialiser la SDL");
   }
   window=SDL_CreateWindow("Titre de la fenetre", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, largeur , hauteur, SDL_WINDOW_SHOWN);
   if( window == NULL )
@@ -192,5 +200,31 @@ void Graphique::affiche_obstacle(Environnement<RNG> Env)
   rectangle_4.h = Env.get_taille_vert() - Obs_d.get_haut();
   SDL_Rect Robert_4(rectangle_4);
   SDL_RenderFillRect(renderer, &Robert_4);
+}
+
+template<class RNG>
+void Graphique::affiche_pause(Environnement<RNG> Env)const
+{
+  int large_rect = 80;
+  int long_rect = 3 * large_rect;
+
+  int s = Env.get_taille_hor();
+  int l = Env.get_taille_vert();
+  SDL_Rect rectangle_1;
+  SDL_Rect rectangle_2;
+  SDL_SetRenderDrawColor(renderer, 20, 20, 20, 255);
+
+  rectangle_1.x = 7 * s / 12 - large_rect / 2;
+  rectangle_1.y = l / 2 - long_rect / 2;
+  rectangle_1.w = large_rect;
+  rectangle_1.h = long_rect;
+
+  rectangle_2.x = 5 * s / 12 - large_rect / 2;
+  rectangle_2.y = l / 2 - long_rect / 2;
+  rectangle_2.w = large_rect;
+  rectangle_2.h = long_rect;
+
+  SDL_RenderFillRect(renderer, &rectangle_1);
+  SDL_RenderFillRect(renderer, &rectangle_2);
 }
 #endif

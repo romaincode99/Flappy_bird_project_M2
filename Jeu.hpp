@@ -36,24 +36,31 @@ void Jeu<RNG>::run()
       A.set_reset(false);
     }
 
-    A.affiche_tout<RNG>(Env);
+    A.affiche_tout<RNG>(Env, A.get_echap());
     A.ecouter();
 
     if(A.get_quitter())
     {
       run=false;
     }
-
-    if(Env.touche_pas() && !A.get_echap())
+    try
     {
-      Env.tombe_oiseau();
-      Env.avance_tuyaux();
-      if(Env.change_obstacle_si_necessaire())
-     {
-       compteur += 1;
-       std::cout<<"score : "<<compteur<<std::endl;
-     }
+      if(Env.touche_pas() && !A.get_echap())
+      {
+        Env.tombe_oiseau();
+        Env.avance_tuyaux();
+        if(Env.change_obstacle_si_necessaire())
+       {
+         compteur += 1;
+         std::cout<<"score : "<<compteur<<std::endl;
+       }
+      }
     }
+    catch( logic_error msg )
+    {
+      std::cout<<msg.what()<<"!\n";
+    }
+
     if(A.get_touche_enfoncee())
     {
       Env.saute_oiseau();
