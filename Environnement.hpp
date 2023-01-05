@@ -38,10 +38,9 @@ public:
                                                                                                                                                           taille_fenetre_horizontale(T_horiz),
                                                                                                                                                           taille_fenetre_verticale(T_vert),
                                                                                                                                                           Gr(Gr_), aleas(G) {};
-//TODO Pourquoi on se sert de la masse ??
 
-    bool touche_pas(void);
-    bool EstPasse();
+    bool touche_pas(void)const;
+    bool EstPasse()const;
 
     bool change_obstacle_si_necessaire();
 
@@ -52,9 +51,9 @@ public:
     int get_taille_hor()const{return taille_fenetre_horizontale;}
     int get_taille_vert()const{return taille_fenetre_verticale;}
 
-    Oiseau get_oiseau(){return bird;}
-    Obstacle get_obstacle_gauche(){return obstacle_gauche;}
-    Obstacle get_obstacle_droite(){return obstacle_droite;}
+    Oiseau get_oiseau()const{return bird;}
+    Obstacle get_obstacle_gauche()const{return obstacle_gauche;}
+    Obstacle get_obstacle_droite()const{return obstacle_droite;}
 
 };
 
@@ -62,7 +61,7 @@ public:
 
 //fonction touche ou touche pas renvoie true quand touche pas et false si on touche
 template<class RNG>
-bool Environnement<RNG>::touche_pas(void)
+bool Environnement<RNG>::touche_pas(void)const
 {
     if ((bird.get_pos_hor() + bird.get_rayon() > obstacle_gauche.get_pos_hor() - obstacle_gauche.get_large() / 2 &&
          bird.get_pos_hor() - bird.get_rayon() < obstacle_gauche.get_pos_hor() + obstacle_gauche.get_large() / 2) &&
@@ -83,9 +82,9 @@ bool Environnement<RNG>::touche_pas(void)
 }
 
 template<class RNG>
-bool Environnement<RNG>::EstPasse()
+bool Environnement<RNG>::EstPasse()const
 {
-    if(bird.get_pos_hor() + bird.get_rayon() > obstacle_gauche.get_pos_hor() + obstacle_gauche.get_large() / 2)
+    if(bird.get_pos_hor() + bird.get_rayon() + 5 > obstacle_gauche.get_pos_hor() + obstacle_gauche.get_large() / 2)//on rajoute les 5 pixels pour etre sur qu'on est bien passé
         return true;
     else
         return false;

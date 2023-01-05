@@ -1,6 +1,6 @@
 #include "Compteur.hpp"
 
-void Chiffre::affiche_ch(bool haut, bool haut_gauche, bool haut_droite, bool milieu, bool bas_gauche, bool bas_droite, bool bas)
+void Chiffre::affiche_ch(bool haut, bool haut_gauche, bool haut_droite, bool milieu, bool bas_gauche, bool bas_droite, bool bas)const
 {
     if(haut)
     {
@@ -73,7 +73,7 @@ void Chiffre::affiche_ch(bool haut, bool haut_gauche, bool haut_droite, bool mil
         SDL_RenderFillRect(renderer, &basrec);
     }
 }
-void Chiffre::affiche()
+void Chiffre::affiche()const
 {
     if(chiffre == 0)
         affiche_ch(true, true, true, false, true, true, true);
@@ -174,7 +174,7 @@ void Nombre::set_zero()
     Chiffre ZERO(renderer, largeur_trait, xpos, ypos, 0);
     chiffres.push_back(ZERO);
 }
-void Nombre::affiche()
+void Nombre::affiche()const
 {
     for(auto& CHI : chiffres)
         CHI.affiche();

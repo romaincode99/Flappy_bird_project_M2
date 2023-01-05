@@ -20,7 +20,7 @@ private:
 public:
     Oiseau(int p, double v, double mass, int r) : pos(p), vit(v), masse(mass), rayon(r){}
 
-    bool monte_ou_descend()
+    bool monte_ou_descend()const
     {
         if (vit > 0)
             return true;
@@ -33,28 +33,28 @@ public:
         mort_ou_vif = true;
     }
 
-    double get_pos()
+    double get_pos()const
     {
         return pos;
     }
 
-    double get_vit() {
+    double get_vit()const {
         return vit;
     }
 
-    int get_rayon() {
+    int get_rayon()const {
         return rayon;
     }
 
-    bool get_mort_ou_vif() {
+/*    bool get_mort_ou_vif() const{
         return mort_ou_vif;
-    }
+    }*/
 
-    double get_masse() {
+    double get_masse()const {
         return masse;
     }
 
-    int get_pos_hor() {
+    int get_pos_hor()const {
         return pos_hor;
     }
 
@@ -68,6 +68,4 @@ public:
 
 };
 
-//Methode pour savoir si il monte ou descend
-//Methode mort ou vif
 #endif //PROJET_FLAPPY_BIRD_OISEAU_H

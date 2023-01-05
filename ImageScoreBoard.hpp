@@ -50,7 +50,7 @@ class ImageScoreBoard
             destroyTexture(image);
         }
 
-        void affiche_image()
+        void affiche_image()const
         {
             SDL_RenderCopy(renderer, image, nullptr, nullptr); // Affiche ma texture sur touts l'écran
             SDL_RenderPresent(renderer);

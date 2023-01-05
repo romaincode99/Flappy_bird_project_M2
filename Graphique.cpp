@@ -57,7 +57,7 @@ void Graphique::ecouter()
     }
 }
 
-void Graphique::affiche_oiseau(Oiseau B)
+void Graphique::affiche_oiseau(Oiseau B)const
 {
     SDL_Rect Robert;
     Robert.x = B.get_pos_hor() - B.get_rayon();
@@ -107,7 +107,7 @@ void Graphique::affiche_pause()const
     }
 }
 
-void Graphique::affiche_Lemore()const
+void Graphique::affiche_fin()const
 {
     if(Etat == 3)
     {

@@ -23,7 +23,7 @@ class Chiffre
         int v;
         int b;
 
-        void affiche_ch(bool haut, bool haut_gauche, bool haut_droite, bool milieu, bool bas_gauche, bool bas_droite, bool bas);
+        void affiche_ch(bool haut, bool haut_gauche, bool haut_droite, bool milieu, bool bas_gauche, bool bas_droite, bool bas)const;
     public:
         Chiffre(SDL_Renderer* rd): renderer(rd), largeur_trait(1), xpos(0), ypos(0), chiffre(0), r(134), v(6), b(6){}
         Chiffre(): renderer(nullptr), largeur_trait(1), xpos(0), ypos(0), chiffre(0), r(134), v(6), b(6){}
@@ -37,7 +37,7 @@ class Chiffre
             ypos = y;
             chiffre = ch;
         }
-        void affiche(); 
+        void affiche()const;
 
         int get_xpos()const
         {
@@ -83,7 +83,7 @@ class Nombre
         Nombre(SDL_Renderer* rd, int x, int y, int hauteur, int nbr); // hauteur <==> hauteur de chaque chiffre
         Nombre():renderer(nullptr), xpos(0), ypos(0), largeur_trait(1), rapportLongLarg(2), nombre(0){}
         void operator ++();
-        void affiche();
+        void affiche()const;
         void set_zero();
         void set_color_all(int rouge, int vert, int bleu);
 };

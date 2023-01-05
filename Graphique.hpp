@@ -51,11 +51,11 @@ public:
     {
         return Etat;
     }
-    SDL_Renderer* get_renderer()
+    SDL_Renderer* get_renderer()const
     {
         return renderer;
     }
-    Nombre& get_compteur()
+    Nombre& get_compteur()// on utilisera ++ get_compteur
     {
         return compteur;
     }
@@ -76,29 +76,29 @@ public:
         SDL_Quit();
     }
 
-    void affiche_fond()
+    void affiche_fond()const  //le const ne fait pas d'erreur car on modifie la valeur du pointeur
     {
         SDL_SetRenderDrawColor( renderer, 14, 241, 250, 255 );
         SDL_RenderClear( renderer );
     }
 
-    void affiche_oiseau(Oiseau B);
+    void affiche_oiseau(Oiseau B)const;
 
     template<class RNG>
-    void affiche_obstacle(Environnement<RNG> Env);
+    void affiche_obstacle(Environnement<RNG> Env)const;
 
     void affiche_pause()const;
 
-    void affiche_Lemore()const;
+    void affiche_fin()const;
 
     template<class RNG>
-    void affiche_tout(Environnement<RNG> Env)
+    void affiche_tout(Environnement<RNG> Env)const
     {
         affiche_fond();
         affiche_oiseau(Env.get_oiseau());
         affiche_obstacle<RNG>(Env);
         affiche_pause();
-        affiche_Lemore();
+        affiche_fin();
         compteur.affiche();
 
         SDL_RenderPresent(renderer);
@@ -108,7 +108,7 @@ public:
 //===============================================================================================================================//
 
 template<class RNG>
-void Graphique::affiche_obstacle(Environnement<RNG> Env)
+void Graphique::affiche_obstacle(Environnement<RNG> Env)const
 {
     Obstacle Obs_g = Env.get_obstacle_gauche();
     Obstacle Obs_d = Env.get_obstacle_droite();

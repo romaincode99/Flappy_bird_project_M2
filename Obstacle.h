@@ -21,19 +21,19 @@ public:
     template<class RNG>
     Obstacle(RNG&   G, int hor, int taille_fenetre_vert, int taille_oiseau);
 
-    double get_bas() {
+    double get_bas()const {
         return bas;
     }
 
-    double get_haut() {
+    double get_haut()const {
         return haut;
     }
 
-    double get_large() {
+    double get_large()const {
         return largeur;
     }
 
-    double get_pos_hor() {
+    double get_pos_hor()const {
         return pos_hor;
     }
 
