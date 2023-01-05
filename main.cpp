@@ -13,11 +13,11 @@ using namespace std;
 
 int main()
 {
-  mt19937 G(time(NULL));
-  Jeu J(G);
-  J.run();
+    mt19937 G(time(NULL));
+    Jeu<mt19937> J(G);
+    J.run();
 
-  return 0;
+    return 0;
 }
 
 //rajouter le faite que si on appui long temsp le soisseua saute plus haut !!

@@ -30,18 +30,18 @@ public:
     double Gr;
 
 // public:
-    Environnement(RNG& G, double VH = -250., int T_horiz = 800, int T_vert = 1023,  int taille_oiseau = 20,
-                  double dt_ = 1e-2, double Gr_ = 9.81 * 0.5e3) :  vitesse_horizontale(VH),
-                                                           obstacle_gauche(G, T_horiz / 2, T_vert, taille_oiseau),
-                                                           obstacle_droite(G, T_horiz, T_vert, taille_oiseau),
-                                                           dt(dt_),
-                                                           bird(T_horiz / 4, 0., 0.02, taille_oiseau),
-                                                           taille_fenetre_horizontale(T_horiz),
-                                                           taille_fenetre_verticale(T_vert),
-                                                           Gr(Gr_), aleas(G) {};
+    Environnement(RNG& G, double VH = -250., int T_horiz = 800, int T_vert = 1023,  int taille_oiseau = 20, double dt_ = 1e-2, double Gr_ = 9.81 * 0.5e3):vitesse_horizontale(VH),
+                                                                                                                                                          obstacle_gauche(G, T_horiz / 2, T_vert, taille_oiseau),
+                                                                                                                                                          obstacle_droite(G, T_horiz, T_vert, taille_oiseau),
+                                                                                                                                                          dt(dt_),
+                                                                                                                                                          bird(T_horiz / 4, 0., 0.02, taille_oiseau),
+                                                                                                                                                          taille_fenetre_horizontale(T_horiz),
+                                                                                                                                                          taille_fenetre_verticale(T_vert),
+                                                                                                                                                          Gr(Gr_), aleas(G) {};
 //TODO Pourquoi on se sert de la masse ??
 
     bool touche_pas(void);
+    bool EstPasse();
 
     bool change_obstacle_si_necessaire();
 
@@ -65,27 +65,36 @@ template<class RNG>
 bool Environnement<RNG>::touche_pas(void)
 {
     if ((bird.get_pos_hor() + bird.get_rayon() > obstacle_gauche.get_pos_hor() - obstacle_gauche.get_large() / 2 &&
-        bird.get_pos_hor() - bird.get_rayon() < obstacle_gauche.get_pos_hor() + obstacle_gauche.get_large() / 2) &&
+         bird.get_pos_hor() - bird.get_rayon() < obstacle_gauche.get_pos_hor() + obstacle_gauche.get_large() / 2) &&
         (bird.get_pos() - bird.get_rayon() < obstacle_gauche.get_bas() ||
-        bird.get_pos() + bird.get_rayon() > obstacle_gauche.get_haut())
-        )
-        {
+         bird.get_pos() + bird.get_rayon() > obstacle_gauche.get_haut())
+            )
+    {
         throw logic_error("Tu est Mort ... RIP");
         return (false);
-      }
+    }
     else if(bird.get_pos() - bird.get_rayon() < 0 || bird.get_pos() + bird.get_rayon()> taille_fenetre_verticale)
     {
         throw logic_error("Tu est Mort ... RIP");
         return (false);
-      }
+    }
     else
         return (true);
 }
 
 template<class RNG>
-bool Environnement<RNG>::change_obstacle_si_necessaire()//return true si rajoute un obstacle et false sinon (pour compter les obstacles passés)
+bool Environnement<RNG>::EstPasse()
 {
-    if (obstacle_gauche.get_pos_hor() + obstacle_gauche.get_large() <= 0) // coordonnées de la fenetre (0,0) en bas a gauche !
+    if(bird.get_pos_hor() + bird.get_rayon() > obstacle_gauche.get_pos_hor() + obstacle_gauche.get_large() / 2)
+        return true;
+    else
+        return false;
+}
+
+template<class RNG>
+bool Environnement<RNG>::change_obstacle_si_necessaire()//return true si rajoute un obstacle et false sinon (pour compter les obstacles passÃ©s)
+{
+    if (obstacle_gauche.get_pos_hor() + obstacle_gauche.get_large() <= 0) // coordonnÃ©es de la fenetre (0,0) en bas a gauche !
     {
         obstacle_gauche = obstacle_droite;
         obstacle_droite = Obstacle(aleas, taille_fenetre_horizontale, taille_fenetre_verticale, bird.get_rayon());
@@ -107,7 +116,7 @@ void Environnement<RNG>::tombe_oiseau()
 template<class RNG>
 void Environnement<RNG>::saute_oiseau()
 {
-  bird.set_vit(-1200);
+    bird.set_vit(-1200);
 }
 
 template<class RNG>
@@ -119,4 +128,4 @@ void Environnement<RNG>::avance_tuyaux()
 
 #endif
 
-//METRE UNE FIN À FLAPPY BIRD À 10 000
+//METRE UNE FIN Ã€ FLAPPY BIRD Ã€ 10 000
