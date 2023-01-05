@@ -13,6 +13,7 @@ private:
     RNG G_perso;
 public:
     Jeu(RNG& G): Env(G), G_perso(G){}
+    Jeu(RNG& G, Environnement<RNG> env): Env(env), G_perso(G){}
     void run();
 };
 
