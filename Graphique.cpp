@@ -6,7 +6,7 @@ Graphique::Graphique(int largeur, int hauteur):quitter(false), touche_appuyee(0)
     {
         throw runtime_error("Impossible d'initialiser la SDL");
     }
-    window=SDL_CreateWindow("Titre de la fenetre", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, largeur , hauteur, SDL_WINDOW_SHOWN);
+    window=SDL_CreateWindow("Flappy Bird !", SDL_WINDOWPOS_UNDEFINED, 0, largeur , hauteur, SDL_WINDOW_SHOWN);
     if( window == NULL )
     {
         SDL_Quit(); // penser a fermer SDL
@@ -25,6 +25,12 @@ Graphique::Graphique(int largeur, int hauteur):quitter(false), touche_appuyee(0)
     imgFin.set_pos(40, 50);
     imgFin.set_taille(largeur - 80, hauteur - 100);
     imgFin.Activate();
+
+//     const SDL_VideoInfo* resolution = NULL;
+//     resolution = SDL_GetVideoInfo();
+//     int W = resolution->current_w;
+//     int H = resolution->current_h;
+//     std::cout<<W<<" eet H : "<<H<<std::endl;
 }
 
 void Graphique::ecouter()
