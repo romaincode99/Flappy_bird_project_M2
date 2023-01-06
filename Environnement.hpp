@@ -52,8 +52,8 @@ public:
     int get_taille_vert()const{return taille_fenetre_verticale;}
 
     Oiseau& get_oiseau(){return bird;}
-    Obstacle get_obstacle_gauche()const{return obstacle_gauche;}
-    Obstacle get_obstacle_droite()const{return obstacle_droite;}
+    Obstacle& get_obstacle_gauche(){return obstacle_gauche;}
+    Obstacle& get_obstacle_droite(){return obstacle_droite;}
 
 };
 

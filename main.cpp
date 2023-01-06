@@ -12,6 +12,7 @@
 using namespace std;
 
 int main()
+//int main(int argc, char *argv[])
 {
     mt19937 G(time(NULL));
     Jeu<mt19937> J(G);
