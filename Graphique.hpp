@@ -7,6 +7,7 @@
 #include "Oiseau.h"
 #include "Environnement.hpp"
 #include "Compteur.hpp"
+#include "Image.hpp"
 
 using namespace std;
 
@@ -27,6 +28,7 @@ private:
     bool reset;
     int Etat = 0;// trois etats possibles : 'DEBUT' : 0, 'JEU' : 1 , 'PAUSE' , 2 et 'MORT' : 3
     Nombre compteur;
+    Image imgFin;
 
 public:
     Graphique(int largeur, int hauteur);
@@ -47,7 +49,7 @@ public:
     {
         return reset;
     }
-    char get_Etat()const
+    int get_Etat()const
     {
         return Etat;
     }
@@ -89,7 +91,11 @@ public:
 
     void affiche_pause()const;
 
-    void affiche_fin()const;
+    void affiche_fin()const
+    {
+        if(Etat == 3)
+            imgFin.affiche_image();
+    }
 
     template<class RNG>
     void affiche_tout(Environnement<RNG> Env)const
@@ -98,8 +104,8 @@ public:
         affiche_oiseau(Env.get_oiseau());
         affiche_obstacle<RNG>(Env);
         affiche_pause();
-        affiche_fin();
         compteur.affiche();
+        affiche_fin();
 
         SDL_RenderPresent(renderer);
     }

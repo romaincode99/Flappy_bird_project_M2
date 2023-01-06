@@ -51,7 +51,7 @@ public:
     int get_taille_hor()const{return taille_fenetre_horizontale;}
     int get_taille_vert()const{return taille_fenetre_verticale;}
 
-    Oiseau get_oiseau()const{return bird;}
+    Oiseau& get_oiseau(){return bird;}
     Obstacle get_obstacle_gauche()const{return obstacle_gauche;}
     Obstacle get_obstacle_droite()const{return obstacle_droite;}
 
@@ -126,5 +126,3 @@ void Environnement<RNG>::avance_tuyaux()
 }
 
 #endif
-
-//METRE UNE FIN Ã€ FLAPPY BIRD Ã€ 10 000

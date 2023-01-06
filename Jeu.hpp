@@ -13,65 +13,68 @@ private:
     RNG G_perso;
 public:
     Jeu(RNG& G): Env(G), G_perso(G){}
-    Jeu(RNG& G, Environnement<RNG> env): Env(env), G_perso(G){}
+    Jeu(RNG& G, Environnement<RNG>& env): Env(env), G_perso(G){}
     void run();
 };
 
 template<class RNG>
 void Jeu<RNG>::run()
 {
-    Graphique A(Env.get_taille_hor(),Env.get_taille_vert());
+    Graphique Graph(Env.get_taille_hor(),Env.get_taille_vert());
 
-    bool ChangeScore = true; //indique si le score peut Ã©voluer!
+    bool ChangeScore = true; //indique si le score peut évoluer!
     bool run = true;
     while(run)
     {
-        if(A.get_reset())
-        {
-            A.set_Etat(0);
-            Environnement<RNG> EnvRst(G_perso);
-            Env = EnvRst;
-            A.get_compteur().set_zero();
-            ChangeScore = true;
-
-            A.set_reset(false);
-        }
-
-        A.affiche_tout<RNG>(Env);
-        A.ecouter();
-
-        if(A.get_quitter())
+        Graph.ecouter();
+        if(Graph.get_quitter())
         {
             run=false;
         }
+
+        if(Graph.get_reset())
+        {
+            Graph.set_Etat(0);
+            Environnement<RNG> EnvRst(G_perso);
+            Env = EnvRst;
+            Graph.get_compteur().set_zero();
+            ChangeScore = true;
+
+            Graph.set_reset(false);
+            Graph.affiche_tout<RNG>(Env);
+        }
+
         try
         {
-            Env.touche_pas();
-            if(A.get_Etat() == 1) // 1 <=> JEU
+            Env.touche_pas();//renvvoie une exeption si on touche !
+            if(Graph.get_Etat() == 1) // 1 <=> JEU
             {
                 Env.tombe_oiseau();
                 Env.avance_tuyaux();
                 if(Env.EstPasse() && ChangeScore)
                 {
-                    ++A.get_compteur();
+                    ++Graph.get_compteur();
                     ChangeScore = false;
                 }
                 if(Env.change_obstacle_si_necessaire())
                 {
                     ChangeScore = true;
                 }
+                if(Graph.get_touche_enfoncee())
+                {
+                    Env.saute_oiseau();
+                }
             }
         }
         catch( logic_error msg )
         {
-            A.set_Etat(3); // 3 <==> MORT
-            std::cout<<msg.what()<<"!\n";
+            if(Graph.get_Etat() != 3)
+            {
+                Graph.set_Etat(3); // 3 <==> MORT
+            }
+            // std::cout<<msg.what()<<"!\n";
         }
-
-        if(A.get_touche_enfoncee())
-        {
-            Env.saute_oiseau();
-        }
+        Graph.affiche_tout<RNG>(Env);
         SDL_Delay(10);
     }
 }

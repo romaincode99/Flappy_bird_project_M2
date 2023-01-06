@@ -1,6 +1,6 @@
 #include "Graphique.hpp"
 
-Graphique::Graphique(int largeur, int hauteur):quitter(false), touche_appuyee(0), reset(false), Largeur(largeur), Hauteur(hauteur)
+Graphique::Graphique(int largeur, int hauteur):quitter(false), touche_appuyee(0), reset(false), Largeur(largeur), Hauteur(hauteur), imgFin("images/imgFin.bmp")
 {
     if( SDL_Init(SDL_INIT_VIDEO) < 0 )
     {
@@ -21,6 +21,10 @@ Graphique::Graphique(int largeur, int hauteur):quitter(false), touche_appuyee(0)
     }
 
     compteur = Nombre(renderer, 10, 10, 30, 0);
+    imgFin.set_renderer(renderer);
+    imgFin.set_pos(40, 50);
+    imgFin.set_taille(largeur - 80, hauteur - 100);
+    imgFin.Activate();
 }
 
 void Graphique::ecouter()
@@ -107,19 +111,19 @@ void Graphique::affiche_pause()const
     }
 }
 
-void Graphique::affiche_fin()const
-{
-    if(Etat == 3)
-    {
-        SDL_Rect rectangle_fond;
-        int decalageL = 40;
-        int decalageH = 50;
-        rectangle_fond.x = decalageL;
-        rectangle_fond.y = decalageH;
-        rectangle_fond.w = Largeur - 2 * decalageL;
-        rectangle_fond.h = Hauteur - 2 * decalageH;
-
-        SDL_SetRenderDrawColor(renderer, 134, 6, 6, 255);
-        SDL_RenderFillRect(renderer, &rectangle_fond);
-    }
-}
+// void Graphique::affiche_fin()const
+// {
+//     if(Etat == 3)
+//     {
+//         SDL_Rect rectangle_fond;
+//         int decalageL = 40;
+//         int decalageH = 50;
+//         rectangle_fond.x = decalageL;
+//         rectangle_fond.y = decalageH;
+//         rectangle_fond.w = Largeur - 2 * decalageL;
+//         rectangle_fond.h = Hauteur - 2 * decalageH;
+//
+//         SDL_SetRenderDrawColor(renderer, 134, 6, 6, 255);
+//         SDL_RenderFillRect(renderer, &rectangle_fond);
+//     }
+// }

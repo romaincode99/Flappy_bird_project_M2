@@ -1,3 +1,0 @@
-C:/Users/justi/Documents/Fac/Master_2/C++/Flappy_git/Flappy_bird_project_M2/cmake-build-debug/CMakeFiles/Projet_Flappy_Bird.dir
-C:/Users/justi/Documents/Fac/Master_2/C++/Flappy_git/Flappy_bird_project_M2/cmake-build-debug/CMakeFiles/edit_cache.dir
-C:/Users/justi/Documents/Fac/Master_2/C++/Flappy_git/Flappy_bird_project_M2/cmake-build-debug/CMakeFiles/rebuild_cache.dir
