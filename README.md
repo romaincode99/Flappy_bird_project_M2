@@ -11,6 +11,7 @@ Le Makefile donne accès à plusieurs programmes :
     Les differentes commandes sont :
         - Appuyer sur la barre espace pour faire sauter l'oiseau.
         - Appuyer sur échap pour mettre le jeu en pause et rappuyer sur Espace pour continuer.
+        - Appuyer sur la touche "r" pour recommencer. 
         - Si vous avez perdu, appuyez sur Entrer pour recommencer.
 
 #TestU_image :
