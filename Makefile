@@ -1,31 +1,36 @@
-PROGS=main TestU_compteurs testU_image
+PROGS=main TestU_compteurs TestU_image TestU_contact
 
 all: $(PROGS)
 
 main: main.o Graphique.o Compteur.o
 		g++ -o $@ $^ -lSDL2 -g
 
-TestU_compteurs: main_test.o Compteur.o
+TestU_compteurs: TestU_compteurs.o Compteur.o
 		g++ -o $@ $^ -lSDL2 -g
 
-testU_image: testImg.o
+TestU_image: TestU_image.o
 		g++ -o $@ $^ -lSDL2 -g
 
-main.o: main.cpp Graphique.hpp Jeu.hpp Oiseau.h Environnement.hpp Obstacle.h Compteur.hpp
+TestU_contact: TestU_contact.o Graphique.o Compteur.o
+		g++ -o $@ $^ -lSDL2 -g
+
+main.o: main.cpp Jeu.hpp Environnement.hpp Oiseau.h Obstacle.h Graphique.hpp
 		g++ -c $< -lSDL2 -g
 
-main_test.o: main_test.cpp Compteur.hpp
+TestU_compteurs.o: TestU_compteurs.cpp Compteur.hpp
 		g++ -c $< -lSDL2 -g
 
-testImg.o: testImg.cpp Image.hpp
+TestU_image.o: TestU_image.cpp Image.hpp
 		g++ -c $< -lSDL2 -g
 
-Graphique.o: Graphique.cpp Graphique.hpp Image.hpp
+Graphique.o: Graphique.cpp Graphique.hpp Image.hpp Environnement.hpp Oiseau.h Obstacle.h
 		g++ -c $< -lSDL2 -g
 
 Compteur.o: Compteur.cpp Compteur.hpp
 	 	g++ -c $< -lSDL2 -g
 
+TestU_contact.o: TestU_contact.cpp Jeu.hpp Environnement.hpp Oiseau.h Obstacle.h Graphique.hpp
+		g++ -c $< -lSDL2 -g
 
 
 clean:

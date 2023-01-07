@@ -2,7 +2,7 @@
 // #include"Obstacle.h"
 // #include "Oiseau.h"
 // #include "Environement.hpp"
-#include "Graphique.hpp"
+// #include "Graphique.hpp"
 #include "Jeu.hpp"
 #include <SDL2/SDL.h>
 #include <random>

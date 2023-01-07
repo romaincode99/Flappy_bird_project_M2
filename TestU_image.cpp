@@ -13,7 +13,7 @@ int main()
     {
         throw runtime_error("Impossible d'initialiser la SDL");
     }
-    SDL_Window* window = SDL_CreateWindow("Titre de la fenetre", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, 800 , 1000, SDL_WINDOW_SHOWN);
+    SDL_Window* window = SDL_CreateWindow("Titre de la fenetre", SDL_WINDOWPOS_UNDEFINED, 0, 800 , 1000, SDL_WINDOW_SHOWN);
     if( window == NULL )
     {
         SDL_Quit(); // penser a fermer SDL

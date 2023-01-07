@@ -15,10 +15,9 @@ private:
     double vit;
     int rayon; //mettre la bonne valeur
     bool mort_ou_vif = true; //true = vif
-    double masse;
 
 public:
-    Oiseau(int p, double v, double mass, int r) : pos(p), vit(v), masse(mass), rayon(r){}
+    Oiseau(int p, double v, int r) : pos(p), vit(v), rayon(r){}
 
     bool monte_ou_descend()const
     {
@@ -44,14 +43,6 @@ public:
 
     int get_rayon()const {
         return rayon;
-    }
-
-/*    bool get_mort_ou_vif() const{
-        return mort_ou_vif;
-    }*/
-
-    double get_masse()const {
-        return masse;
     }
 
     int get_pos_hor()const {

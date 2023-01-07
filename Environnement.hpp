@@ -34,7 +34,7 @@ public:
                                                                                                                                                           obstacle_gauche(G, T_horiz / 2, T_vert, taille_oiseau),
                                                                                                                                                           obstacle_droite(G, T_horiz, T_vert, taille_oiseau),
                                                                                                                                                           dt(dt_),
-                                                                                                                                                          bird(T_horiz / 4, 0., 0.02, taille_oiseau),
+                                                                                                                                                          bird(T_horiz / 4, 0., taille_oiseau),
                                                                                                                                                           taille_fenetre_horizontale(T_horiz),
                                                                                                                                                           taille_fenetre_verticale(T_vert),
                                                                                                                                                           Gr(Gr_), aleas(G) {};
