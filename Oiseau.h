@@ -1,7 +1,3 @@
-//
-// Created by justi on 11/11/2022.
-//
-
 #ifndef PROJET_FLAPPY_BIRD_OISEAU_H
 #define PROJET_FLAPPY_BIRD_OISEAU_H
 
@@ -13,7 +9,7 @@ private:
     double pos;
     int pos_hor = 100;
     double vit;
-    int rayon; //mettre la bonne valeur
+    int rayon;
     bool mort_ou_vif = true; //true = vif
 
 public:

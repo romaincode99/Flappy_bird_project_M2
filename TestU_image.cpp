@@ -48,8 +48,6 @@ int main()
                 case SDL_QUIT : run = false; break;
             }
         }
-        // SDL_SetRenderDrawColor( renderer, 14, 241, 250, 255 );
-        // SDL_RenderClear( renderer );
 
         test.affiche_image();
 

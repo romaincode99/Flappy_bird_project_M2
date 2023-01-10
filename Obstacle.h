@@ -1,7 +1,3 @@
-//
-// Created by justi on 11/11/2022.
-//
-
 #ifndef PROJET_FLAPPY_BIRD_OBSTACLE_H
 #define PROJET_FLAPPY_BIRD_OBSTACLE_H
 
@@ -15,7 +11,7 @@ private:
     int bas; //c'est le bas du tuyau du haut
     int haut; //c'est le haut du tuyau du bas
     double pos_hor;
-    int largeur = 70;// a determiner
+    int largeur = 70;
 
 public:
     template<class RNG>
@@ -57,7 +53,7 @@ Obstacle::Obstacle(RNG& G, int taille_fenetre_hor, int taille_fenetre, int taill
       b = N2(G);
 
     b = min(int(b), taille_fenetre - taille_trou - taille_oiseau);
-    b = max(int(b), taille_oiseau); // taille oiseau ici rpz le petit bout du tuyau !
+    b = max(int(b), taille_oiseau); // taille oiseau ici a la meme taille que le petit bout du tuyau !
 
     bas = b;
     haut = bas + taille_trou;

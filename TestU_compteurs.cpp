@@ -1,8 +1,4 @@
-// #include "Graphique.hpp"
-// #include "JeuExpt.hpp"
 #include <SDL2/SDL.h>
-// #include <random>
-// #include <stdio.h>
 #include <iostream>
 #include <ctime>
 #include "Compteur.hpp"

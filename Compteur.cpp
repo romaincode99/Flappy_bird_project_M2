@@ -110,7 +110,6 @@ Nombre::Nombre(SDL_Renderer* rd, int x, int y, int hauteur, int nbr): renderer(r
     int nbr_chi = chi_str.size();
     longueur_trait =   rapportLongLarg * largeur_trait;
     space = 3 * largeur_trait;
-    std::cout<<space<<std::endl;
 
     chiffres = std::list<Chiffre>(nbr_chi, renderer);
     int i =0;

@@ -6,7 +6,7 @@ Graphique::Graphique(int largeur, int hauteur):quitter(false), touche_appuyee(0)
     {
         throw runtime_error("Impossible d'initialiser la SDL");
     }
-    window=SDL_CreateWindow("Flappy Bird !", SDL_WINDOWPOS_UNDEFINED, 0, largeur , hauteur, SDL_WINDOW_SHOWN);
+    window=SDL_CreateWindow("Flappy Bird !", SDL_WINDOWPOS_UNDEFINED, 25, largeur , hauteur, SDL_WINDOW_SHOWN);
     if( window == NULL )
     {
         SDL_Quit(); // penser a fermer SDL
@@ -25,12 +25,6 @@ Graphique::Graphique(int largeur, int hauteur):quitter(false), touche_appuyee(0)
     imgFin.set_pos(40, 50);
     imgFin.set_taille(largeur - 80, hauteur - 100);
     imgFin.Activate();
-
-//     const SDL_VideoInfo* resolution = NULL;
-//     resolution = SDL_GetVideoInfo();
-//     int W = resolution->current_w;
-//     int H = resolution->current_h;
-//     std::cout<<W<<" eet H : "<<H<<std::endl;
 }
 
 void Graphique::ecouter()
@@ -116,20 +110,3 @@ void Graphique::affiche_pause()const
         SDL_RenderFillRect(renderer, &rectangle_2);
     }
 }
-
-// void Graphique::affiche_fin()const
-// {
-//     if(Etat == 3)
-//     {
-//         SDL_Rect rectangle_fond;
-//         int decalageL = 40;
-//         int decalageH = 50;
-//         rectangle_fond.x = decalageL;
-//         rectangle_fond.y = decalageH;
-//         rectangle_fond.w = Largeur - 2 * decalageL;
-//         rectangle_fond.h = Hauteur - 2 * decalageH;
-//
-//         SDL_SetRenderDrawColor(renderer, 134, 6, 6, 255);
-//         SDL_RenderFillRect(renderer, &rectangle_fond);
-//     }
-// }

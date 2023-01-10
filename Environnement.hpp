@@ -6,8 +6,6 @@
 #include <vector>
 #include <cmath>
 
-const double pi = std::acos(-1);
-
 using namespace std;
 
 template<class RNG>
@@ -29,8 +27,7 @@ public:
 
     double Gr;
 
-// public:
-    Environnement(RNG& G, double VH = -250., int T_horiz = 800, int T_vert = 1023,  int taille_oiseau = 20, double dt_ = 1e-2, double Gr_ = 9.81 * 0.5e3):vitesse_horizontale(VH),
+    Environnement(RNG& G, double VH = -250., int T_horiz = 800, int T_vert = 925,  int taille_oiseau = 20, double dt_ = 1e-2, double Gr_ = 9.81 * 0.5e3):vitesse_horizontale(VH),
                                                                                                                                                           obstacle_gauche(G, T_horiz / 2, T_vert, taille_oiseau),
                                                                                                                                                           obstacle_droite(G, T_horiz, T_vert, taille_oiseau),
                                                                                                                                                           dt(dt_),
@@ -59,7 +56,6 @@ public:
 
 //=================================================================================================================================================
 
-//fonction touche ou touche pas renvoie true quand touche pas et false si on touche
 template<class RNG>
 bool Environnement<RNG>::touche_pas(void)const
 {
@@ -105,11 +101,9 @@ bool Environnement<RNG>::change_obstacle_si_necessaire()//return true si rajoute
 template<class RNG>
 void Environnement<RNG>::tombe_oiseau()
 {
-    double a = Gr;// + 60;
+    double a = Gr;
     bird.set_vit(bird.get_vit() + dt * a);
     bird.set_pos(bird.get_pos() + dt * bird.get_vit() + dt * dt / 2 * a);
-    // std::cout <<bird.get_pos() + dt * bird.get_vit() + dt * dt / 2 * a << '\n';
-    // cout<<bird.get_pos()<<endl;
 }
 
 template<class RNG>

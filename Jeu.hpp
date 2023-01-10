@@ -46,7 +46,7 @@ void Jeu<RNG>::run()
 
         try
         {
-            Env.touche_pas();//renvvoie une exeption si on touche !
+            Env.touche_pas();//renvvoie une exception si on touche !
             if(Graph.get_Etat() == 1) // 1 <=> JEU
             {
                 Env.tombe_oiseau();
@@ -72,7 +72,6 @@ void Jeu<RNG>::run()
             {
                 Graph.set_Etat(3); // 3 <==> MORT
             }
-            // std::cout<<msg.what()<<"!\n";
         }
         Graph.affiche_tout<RNG>(Env);
         SDL_Delay(10);

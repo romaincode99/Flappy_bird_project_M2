@@ -51,7 +51,7 @@ class Image
             image = SDL_CreateTextureFromSurface(renderer,monImage);  //La texture monImage contient maintenant l'image importée
             if(!image)
             {
-                printf("Erreur : %s \n",SDL_GetError());//generalement erreur quand on oublie d'initialisé le renderer !
+                printf("Erreur : %s \n",SDL_GetError());//generalement erreur quand on oublie d'initialiser le renderer !
             }
             SDL_FreeSurface(monImage);
         }
@@ -96,7 +96,7 @@ class Image
 
         void affiche_image()const
         {
-            SDL_RenderCopy(renderer, image, nullptr, &Rendu); // Affiche ma texture sur touts l'écran
+            SDL_RenderCopy(renderer, image, nullptr, &Rendu); // Affiche ma texture sur tout l'écran
             SDL_RenderPresent(renderer);
         }
 
